@@ -46,6 +46,7 @@ public class Database {
             message += ",type:" + machines.get(i).getType();
             message += ",speed:" + machines.get(i).getSpeed();
             message += ",status:" + machines.get(i).getStatus();
+            message += ",done:" + machines.get(i).getDone();
             if (i != machines.size() - 1) {
                 message += "&";
             }

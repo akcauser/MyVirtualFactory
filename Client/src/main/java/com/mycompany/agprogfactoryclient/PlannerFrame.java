@@ -46,11 +46,11 @@ public class PlannerFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Type", "Speed", "Status"
+                "Name", "Type", "Speed", "Status", "Done"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -150,11 +150,12 @@ public class Planner implements Runnable {
                 String[] field = fieldsArr[j].split("\\:");
                 listItem.put(field[0], field[1]);
             }
-            array[i] = new Object[4];
+            array[i] = new Object[5];
             array[i][0] = listItem.get("name");
             array[i][1] = listItem.get("type");
             array[i][2] = listItem.get("speed");
             array[i][3] = listItem.get("status");
+            array[i][4] = listItem.get("done");
         }
 
         /*
@@ -163,7 +164,7 @@ public class Planner implements Runnable {
         };
          */
         String[] tableModel = new String[]{
-            "Name", "Type", "Speed", "Status"
+            "Name", "Type", "Speed", "Status", "Done"
         };
 
         DefaultTableModel defaultTableModel = new DefaultTableModel(array, tableModel);

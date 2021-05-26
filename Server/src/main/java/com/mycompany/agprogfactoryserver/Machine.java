@@ -21,6 +21,7 @@ public class Machine {
         this.speed = speed;
         this.status = "Empty";
         this.sender = sender;
+        this.done = 0;
 
         // Create a machine frame
         // Machine is a client object;
@@ -34,6 +35,7 @@ public class Machine {
     private Integer speed;
     private String status;
     private PrintWriter sender;
+    private Integer done;
 
     public String getName() {
         return name;
@@ -84,6 +86,14 @@ public class Machine {
         this.sender = sender;
     }
 
+    public Integer getDone() {
+        return done;
+    }
+
+    public void setDone(Integer done) {
+        this.done = done;
+    }
+    
     public void doJob(Job job) {
         this.sender.println("doJob|id=" + job.getId() + "&type=" + job.getType() + "&cost=" + job.getCost());
         this.setStatus("Busy");

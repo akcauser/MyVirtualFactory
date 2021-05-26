@@ -7,7 +7,6 @@ package com.mycompany.agprogfactoryserver;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -190,11 +189,13 @@ public class Server {
 
         private void jobCompleted(HashMap obj) {
             try {
+                Integer machineIndex = null;
+                Integer jobIndex = null;
                 if (obj.get("machineId") != null) {
                     Integer id = Integer.parseInt(obj.get("machineId").toString());
                     for (int i = 0; i < mydb.machines.size(); i++) {
                         if (mydb.machines.get(i).getId() == id) {
-                            mydb.machines.get(i).setStatus("Empty");
+                            machineIndex = i;
                         }
                     }
                 }
@@ -202,9 +203,17 @@ public class Server {
                     Integer id = Integer.parseInt(obj.get("id").toString());
                     for (int i = 0; i < mydb.jobs.size(); i++) {
                         if (mydb.jobs.get(i).getId() == id) {
-                            mydb.jobs.get(i).setStatus("Done");
+                            jobIndex = i;
                         }
                     }
+                }
+                if (machineIndex != null && jobIndex != null) {
+                    mydb.machines.get(machineIndex).setStatus("Empty");
+                    mydb.jobs.get(jobIndex).setStatus("Done");
+                    mydb.machines.get(machineIndex).setDone(
+                            mydb.machines.get(machineIndex).getDone()
+                            + mydb.jobs.get(jobIndex).getCost()
+                    );
                 }
                 mydb.listJobs();
                 mydb.listMachines();
@@ -240,8 +249,8 @@ public class Server {
                 Job job = new Job(type, cost);
                 mydb.jobs.add(job);
                 // Bütün planlayıcıların ekranına yeni ise create edildiği bilgisi gitmelidir.
-                sender.println("jobCreated|id="+ job.getId() +"&type=" + type + "&cost=" + cost);
-                   
+                sender.println("jobCreated|id=" + job.getId() + "&type=" + type + "&cost=" + cost);
+
                 mydb.listJobs();
                 // iş yaptırma emri
                 doJob();
@@ -265,7 +274,7 @@ public class Server {
                         System.out.println("Null Değil");
                         Integer index = mydb.machines.indexOf(mydb.getEmptyMachineFastest(jobType));
                         mydb.machines.get(index).doJob(mydb.jobs.get(i));
-                        
+
                         // makineye gönderilen iş silinir.
                         mydb.jobs.get(i).setMachine(mydb.machines.get(index).getName());
                         mydb.jobs.get(i).setCompleted(Boolean.TRUE);
