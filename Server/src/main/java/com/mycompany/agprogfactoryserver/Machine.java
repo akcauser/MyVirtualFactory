@@ -13,6 +13,7 @@ import java.io.PrintWriter;
  * @author ertugrulg
  */
 public class Machine {
+
     public Machine(String name, String type, Integer speed, Integer id, PrintWriter sender) {
         this.id = id;
         this.name = name;
@@ -20,12 +21,11 @@ public class Machine {
         this.speed = speed;
         this.status = "Empty";
         this.sender = sender;
-        
+
         // Create a machine frame
         // Machine is a client object;
         // Machine can read message from Server 
         // Machine send message to Server
-        
         System.out.println("Machine Created");
     }
     private Integer id;
@@ -83,9 +83,9 @@ public class Machine {
     public void setSender(PrintWriter sender) {
         this.sender = sender;
     }
-    
-    public void doJob(Job job){
-        this.sender.println("doJob|type="+job.getType()+"&cost="+job.getCost()); 
+
+    public void doJob(Job job) {
+        this.sender.println("doJob|id=" + job.getId() + "&type=" + job.getType() + "&cost=" + job.getCost());
         this.setStatus("Busy");
     }
 }

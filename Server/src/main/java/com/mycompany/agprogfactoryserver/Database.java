@@ -27,16 +27,6 @@ public class Database {
         this.planners = new ArrayList<>();
     }
 
-    public ArrayList<Machine> getEmptyMachines() {
-        ArrayList<Machine> emptyMachines = new ArrayList<Machine>();
-        for (int i = 0; i < machines.size(); i++) {
-            if (machines.get(i).getStatus() == "Empty") {
-                emptyMachines.add(machines.get(i));
-            }
-        }
-        return emptyMachines;
-    }
-
     public Machine getEmptyMachineFastest(String type) {
         for (int i = 0; i < machines.size(); i++) {
             if (machines.get(i).getStatus().equalsIgnoreCase("Empty")
@@ -81,14 +71,11 @@ public class Database {
         // İşlerin listesi alınır ve protokole uyarak mesaj oluşturulur.
         String message = "jobsListed|";
         for (int i = 0; i < jobs.size(); i++) {
-            String status = "Pending";
-            if (jobs.get(i).getCompleted() == true) {
-                status = "Completed";
-            }
             message += i + "=";
             message += "type:" + jobs.get(i).getType();
             message += ",cost:" + jobs.get(i).getCost();
-            message += ",status:" + status;
+            message += ",status:" + jobs.get(i).getStatus();
+            message += ",machine:" + jobs.get(i).getMachine();
             if (i != jobs.size() - 1) {
                 message += "&";
             }

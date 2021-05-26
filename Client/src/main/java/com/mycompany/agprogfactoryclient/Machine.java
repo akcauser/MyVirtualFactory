@@ -144,6 +144,6 @@ public class Machine implements Runnable {
         }
         machineFrame.statusLabel.setText("Empty");
         machineFrame.statusLabel.setBackground(Color.green);
-        sender.println("jobCompleted|machineId="+this.id);
+        sender.println("jobCompleted|id="+obj.get("id").toString()+"&machineId="+this.id);
     }
 }

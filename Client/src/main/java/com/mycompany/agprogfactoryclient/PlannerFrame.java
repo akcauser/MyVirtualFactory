@@ -71,11 +71,11 @@ public class PlannerFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Type", "Cost", "Status"
+                "Type", "Cost", "Status", "Machine"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

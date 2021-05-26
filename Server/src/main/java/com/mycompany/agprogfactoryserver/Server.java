@@ -198,6 +198,14 @@ public class Server {
                         }
                     }
                 }
+                if (obj.get("id") != null) {
+                    Integer id = Integer.parseInt(obj.get("id").toString());
+                    for (int i = 0; i < mydb.jobs.size(); i++) {
+                        if (mydb.jobs.get(i).getId() == id) {
+                            mydb.jobs.get(i).setStatus("Done");
+                        }
+                    }
+                }
                 mydb.listJobs();
                 mydb.listMachines();
                 this.doJob();
@@ -232,7 +240,7 @@ public class Server {
                 Job job = new Job(type, cost);
                 mydb.jobs.add(job);
                 // Bütün planlayıcıların ekranına yeni ise create edildiği bilgisi gitmelidir.
-                sender.println("jobCreated|type=" + type + "&cost=" + cost);
+                sender.println("jobCreated|id="+ job.getId() +"&type=" + type + "&cost=" + cost);
                    
                 mydb.listJobs();
                 // iş yaptırma emri
@@ -257,11 +265,15 @@ public class Server {
                         System.out.println("Null Değil");
                         Integer index = mydb.machines.indexOf(mydb.getEmptyMachineFastest(jobType));
                         mydb.machines.get(index).doJob(mydb.jobs.get(i));
+                        
                         // makineye gönderilen iş silinir.
+                        mydb.jobs.get(i).setMachine(mydb.machines.get(index).getName());
                         mydb.jobs.get(i).setCompleted(Boolean.TRUE);
+                        mydb.jobs.get(i).setStatus("Doing");
                     }
                 }
             }
+            mydb.listJobs();
         }
 
         public void login(HashMap obj) {
