@@ -255,7 +255,7 @@ public class Server {
                 // iş yaptırma emri
                 doJob();
             } catch (Exception e) {
-                sender.println("createJobFailed");
+                sender.println("createJobFailed|type="+obj.get("type")+"&cost="+obj.get("cost"));
             }
             sender.flush();
         }
