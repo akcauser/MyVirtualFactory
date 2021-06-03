@@ -112,7 +112,7 @@ public class Machine implements Runnable {
         status = obj.get("status").toString();
         speed = Integer.parseInt(obj.get("speed").toString());
 
-        showMessageDialog(null, "Machine added!");
+        //showMessageDialog(null, "Machine added!");
         nmf.setVisible(false);
         this.startMachineState();
     }
@@ -129,7 +129,7 @@ public class Machine implements Runnable {
 
     public void machineClosed(HashMap obj) {
         id = obj.get("id").toString();
-        showMessageDialog(null, "Machine closed!");
+        //showMessageDialog(null, "Machine closed!");
         machineFrame.dispose();
     }
 

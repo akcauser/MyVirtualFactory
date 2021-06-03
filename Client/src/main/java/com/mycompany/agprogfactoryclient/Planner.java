@@ -135,7 +135,7 @@ public class Planner implements Runnable {
 
     public void jobCreated(HashMap obj) {
         if (plannerFrame.newJobFrame != null) {
-            showMessageDialog(null, "Job created");
+            //showMessageDialog(null, "Job created");
             plannerFrame.newJobFrame.dispose();
         }
     }
