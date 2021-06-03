@@ -136,6 +136,7 @@ public class Machine implements Runnable {
     public void doJob(HashMap obj) {
         machineFrame.statusLabel.setText("Busy");
         machineFrame.statusLabel.setBackground(Color.red);
+        machineFrame.closeMachineButton.setVisible(false);
         Integer time = Integer.parseInt(obj.get("cost").toString()) / Integer.parseInt(this.speed.toString());
         try {
             TimeUnit.SECONDS.sleep(time);
@@ -144,6 +145,7 @@ public class Machine implements Runnable {
         }
         machineFrame.statusLabel.setText("Empty");
         machineFrame.statusLabel.setBackground(Color.green);
+        machineFrame.closeMachineButton.setVisible(true);
         sender.println("jobCompleted|id="+obj.get("id").toString()+"&machineId="+this.id);
     }
 }

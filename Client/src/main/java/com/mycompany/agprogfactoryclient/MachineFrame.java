@@ -142,7 +142,7 @@ public class MachineFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeMachineButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton closeMachineButton;
+    public javax.swing.JButton closeMachineButton;
     public javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
